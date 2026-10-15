@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#1e2024" />
+    <meta
+      name="description"
+      content="Triky en tiempo real. Cada quien pone su nombre, comparte el código de la sala y juega."
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Triky</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="top">
+        <button id="brand" class="brand" type="button">Triky</button>
+        <button id="share-btn" class="icon-btn" type="button" aria-label="Compartir sala" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 3.5v11"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+            <path
+              d="M8.2 7.2 12 3.4l3.8 3.8"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6 11.5V19a1.5 1.5 0 0 0 1.5 1.5h9A1.5 1.5 0 0 0 18 19v-7.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </header>
+
+      <section id="home" class="home">
+        <div class="home-card">
+          <div class="mark-preview" aria-hidden="true"></div>
+          <h1>Triky</h1>
+          <p class="lede">Dos personas, una sala. Pongan su nombre y jueguen en vivo.</p>
+
+          <form id="play-form">
+            <label class="field" for="name">Tu nombre</label>
+            <input
+              id="name"
+              name="name"
+              maxlength="18"
+              autocomplete="nickname"
+              placeholder="Ej. Camila"
+              required
+            />
+
+            <div id="invite" class="invite" hidden>
+              <p>Te invitaron a la sala</p>
+              <strong id="invite-code" translate="no"></strong>
+            </div>
+
+            <div id="create-block">
+              <button id="create-btn" class="primary" type="submit">Crear partida</button>
+              <p class="or">o entra con un código</p>
+              <label class="field" for="code-input">Código de la sala</label>
+              <input
+                id="code-input"
+                maxlength="6"
+                autocapitalize="characters"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="ABC234"
+                translate="no"
+              />
+              <button id="join-btn" class="secondary" type="button">Unirme</button>
+            </div>
+
+            <button id="enter-btn" class="primary" type="submit" hidden>Entrar a jugar</button>
+            <p id="home-error" class="error" role="alert"></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="game" class="game" hidden>
+        <div class="scores">
+          <div id="card-x" class="score-card">
+            <span class="sym" aria-hidden="true">✕</span>
+            <span id="name-x" class="who">Esperando</span>
+            <span id="score-x" class="pts">-</span>
+          </div>
+          <div id="card-o" class="score-card">
+            <span class="sym" aria-hidden="true">○</span>
+            <span id="name-o" class="who">Esperando</span>
+            <span id="score-o" class="pts">-</span>
+          </div>
+        </div>
+        <p id="status" class="status" aria-live="polite">Conectando…</p>
+        <div class="arena">
+          <div id="board" class="board" role="grid" aria-label="Tablero de Triky"></div>
+        </div>
+      </section>
+
+      <footer id="footer" class="bottom" hidden>
+        <div id="confirm" class="confirm" hidden>
+          <p>¿Reiniciar esta partida? El marcador se conserva.</p>
+          <div class="confirm-actions">
+            <button id="confirm-no" class="secondary" type="button">Cancelar</button>
+            <button id="confirm-yes" class="primary" type="button">Reiniciar</button>
+          </div>
+        </div>
+        <button id="restart-btn" class="restart" type="button">Reiniciar partida</button>
+        <button id="leave-btn" class="leave" type="button">Salir de la sala</button>
+      </footer>
+    </div>
+    <div id="toast" class="toast" hidden role="status"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
